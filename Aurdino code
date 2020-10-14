@@ -1,0 +1,46 @@
+#include <SPI.h>
+#include<ESP8266WiFi.h>
+#include <DHT.h>
+#include <BlynkSimpleEsp8266.h>
+#define DHTPIN 5
+#define DHTTYPE DHT11
+#define BLYNK_MAX_SENDBYTES 256
+DHT dht(DHTPIN, DHTTYPE);
+void sendSensor()
+{
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  if (isnan(h) || isnan(t)) {
+    Serial.println("Failed to read from DHT sensor!");
+  }
+  else
+  {
+    Serial.print("Humidity: ");
+    Serial.print(h);
+    Serial.print("Temperature: ");
+    Serial.println(t);
+  }
+  Blynk.virtualWrite(V5, h);
+  Blynk.virtualWrite(V6, t);
+  if(h>80)
+  {
+    Blynk.email("sakshi.2019@vitstudent.ac.in","Temperature Alert","Humidity over 80. Take ur Umbrella.");
+    Blynk.notify("Humidity over 80. Take ur Umbrella.");
+  }
+  else
+  {
+    Blynk.email("sakshi.2019@vitstudent.ac.in","Temperature Alert","No need for an Umbrella.");
+    Blynk.notify("No need for an Umbrella.  ");
+  }
+}
+void setup()
+{
+  Serial.begin(9600);
+  Blynk.begin(auth,ssid,pass);
+  dht.begin();
+}
+void loop()
+{
+  Blynk.run();
+  delay(1000);s
+  sendSensor();
