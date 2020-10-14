@@ -1,0 +1,11 @@
+Step by step how I, Proposed Project:
+    1. I installed a Blynk application in my phone phone. 
+    2. Once the app is installed and in runnable mode, a project was created using an email address. 
+    3. After creating a project, an authorization code is sent to the email address through which the project was linked to the hardware.
+    4. Create Labeled value widgets for displaying the Temperature and Humidity values.
+    5. Set the pins of Labeled pins in virtual mode and set any pin value as needed.
+    6. A History Graph is to be set to show the variance in the values of temperature and humidity.
+    7. Set the pins in Graph with the same as the virtual pins that were set to the Labeled values.
+    8. To send the data between the hardware and the app we need internet connection like Wi-Fi or mobile hotspot.
+   
+  
